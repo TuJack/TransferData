@@ -1,0 +1,76 @@
+#############################################################################
+## There were errors detected within the request file, please correct and
+## then resubmit the resulting file.
+##
+## Source:   dl788853 (ftp)
+## Filename: /xfer/dl788853/1484102137_40108074.req.checking
+## Parent:   1484102137  40108074   
+##
+## The following errors were found:
+##
+## >>=Yes<<
+##
+## Line 12,  E1016: syntax error, unexpected = before the token '='
+##
+##	The parser encountered the unexpected condition prior to the token
+##	'token'.
+##	
+##	The parser expected a specific token (a language element other than
+##	white space) and found another token instead. This error can occur
+##	in a number of different situations. Check the syntax of the line
+##	containing the specified token.
+##
+#############################################################################
+## There was 1 error encountered within the request file.
+## The request file has been moved to rFundDa201701111035.err
+##
+## Make sure no unprintable characters, such as tabs are present in the
+## definitions and all the required statements (eg. 'START-OF-DATA'
+## are present.
+##
+## Please consult the "Per Security Product Manual" for more information on
+## the request file structure and program options, plus the periodic
+## "Data Service Enhancement Notice(s)" about interface changes.
+#############################################################################
+## Request file:
+#############################################################################
+START-OF-FILE
+SERVER=ftp1ny
+REQUESTFILENAME=FundDa201701111035.req
+FIRMNAME=dl788853
+FILETYPE=pc
+COMPRESS=Yes
+REPLYFILENAME=rFundDa201701111035
+RUNDATE=20170111
+PROGRAMFLAG=oneshot
+DATEFORMAT=yyyy/mm/dd
+SECID=TICKER
+=Yes
+SECMASTER=Yes
+YELLOWKEY=Equity
+OUTPUTFORMAT=bulklist
+HEADER=yes
+PROGRAMNAME=getdata
+
+
+START-OF-FIELDS
+NAME_CHINESE_TRADITIONAL
+LONG_COMPANY_NAME_REALTIME
+ID_ISIN
+FUND_INCEPT_DT
+CNTRY_ISSUE_ISO
+CRNCY
+FUND_GEO_FOCUS
+FUND_STRATEGY
+FUND_ASSET_CLASS_FOCUS
+FUND_TOTAL_ASSETS
+FUND_TOTAL_ASSETS_CRNCY
+FUND_TOTAL_ASSETS_DT
+CNTRY_OF_INCORPORATION
+END-OF-FIELDS
+
+START-OF-DATA
+FFJPANY LX Equity
+END-OF-DATA
+END-OF-FILE
+
