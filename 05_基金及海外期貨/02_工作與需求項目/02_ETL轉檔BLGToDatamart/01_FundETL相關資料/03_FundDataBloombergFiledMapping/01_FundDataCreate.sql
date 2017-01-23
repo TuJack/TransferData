@@ -1,7 +1,7 @@
 USE [Bloomberg]
 GO
 
-/****** Object:  Table [dbo].[FundData]    Script Date: 2017/1/10 ¤U¤È 03:05:30 ******/
+/****** Object:  Table [dbo].[FundData]    Script Date: 2017/1/23 ¤W¤È 11:58:31 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -16,8 +16,8 @@ CREATE TABLE [dbo].[FundData](
 	[iFdName] [varchar](150) NULL,
 	[iFdEName] [varchar](150) NULL,
 	[ISINCode] [varchar](15) NULL,
-	[dIssue_w] [varchar](8) NULL,
-	[dEnd_w] [varchar](8) NULL,
+	[dIssue_w] [datetime] NULL,
+	[dEnd_w] [datetime] NULL,
 	[iCountry] [varchar](2) NULL,
 	[iCurid] [varchar](3) NULL,
 	[invRegion] [varchar](30) NULL,
@@ -25,8 +25,11 @@ CREATE TABLE [dbo].[FundData](
 	[fundType] [varchar](50) NULL,
 	[fundAssets] [decimal](20, 6) NULL,
 	[fundAssetsCurency] [varchar](3) NULL,
-	[fundAssetsDate] [varchar](8) NULL,
-	[issueCountry] [varchar](5) NULL
+	[fundAssetsDate] [datetime] NULL,
+	[issueCountry] [varchar](5) NULL,
+	[systime] [datetime] NOT NULL CONSTRAINT [DF_FundData_systime]  DEFAULT (getdate()),
+	[time_update] [datetime] NOT NULL CONSTRAINT [DF_FundData_time_update]  DEFAULT (getdate()),
+	[flags] [varchar](1) NULL
 ) ON [PRIMARY]
 
 GO
