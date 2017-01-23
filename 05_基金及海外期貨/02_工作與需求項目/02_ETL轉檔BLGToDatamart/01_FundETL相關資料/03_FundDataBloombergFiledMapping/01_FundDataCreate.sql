@@ -1,7 +1,7 @@
 USE [Bloomberg]
 GO
 
-/****** Object:  Table [dbo].[FundData]    Script Date: 2017/1/23 ¤W¤È 11:58:31 ******/
+/****** Object:  Table [dbo].[FundData]    Script Date: 2017/1/23 ¤U¤È 05:15:19 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -15,6 +15,7 @@ CREATE TABLE [dbo].[FundData](
 	[iFdID] [varchar](20) NOT NULL,
 	[iFdName] [varchar](150) NULL,
 	[iFdEName] [varchar](150) NULL,
+	[iFdELongName] [nvarchar](150) NULL,
 	[ISINCode] [varchar](15) NULL,
 	[dIssue_w] [datetime] NULL,
 	[dEnd_w] [datetime] NULL,
@@ -29,7 +30,11 @@ CREATE TABLE [dbo].[FundData](
 	[issueCountry] [varchar](5) NULL,
 	[systime] [datetime] NOT NULL CONSTRAINT [DF_FundData_systime]  DEFAULT (getdate()),
 	[time_update] [datetime] NOT NULL CONSTRAINT [DF_FundData_time_update]  DEFAULT (getdate()),
-	[flags] [varchar](1) NULL
+	[flags] [varchar](1) NULL,
+ CONSTRAINT [PK_FundData] PRIMARY KEY CLUSTERED 
+(
+	[iFdID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
 GO
