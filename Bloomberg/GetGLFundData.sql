@@ -5,7 +5,8 @@ SELECT          TOP (200) iFdID, iFdName, iFdEName, iFdELongName, ISINCode, dIss
                             flags
 FROM              bloomberg.dbo.FundData
 
-select 'FoF' as classcod, iFdID, iFdName, iFdEName, sitData.Com_No com_id, ISINCode,
+select 'FoF' as classcod, iFdID, iFdName, iFdEName, sitData.Com_No com_id,
+       ISINCode,
        isnull(SITData.sitid, '') as compno,
 	   (case when FundData.iCurid =  'TWD' then '1' else '2' end) as fdis,
 	   (case when FundData.fundType = 'Fixed Income' then '01'
@@ -26,11 +27,12 @@ select 'FoF' as classcod, iFdID, iFdName, iFdEName, sitData.Com_No com_id, ISINC
 	   fundData.fundAssetsCurency as PE_Fundsize_Real_icurid
   FROM bloomberg.dbo.FundData FundData left outer join
        (
-	    select sitfund.Fundid fundid, sitFund.cname cname, sitFund.isin, sitFund.sitid sitid, sitFund.sitcname sitCName,
+	    select sitfund.Fundid fundid, sitFund.cname cname, 
+	           sitFund.isin, sitFund.sitid sitid, sitFund.sitcname sitCName,
                sit.ename sitEName, sit.Com_no Com_No
           from CMoney.dbo.CMoney_SITFund sitFund inner join CMoney.dbo.CMoney_SIT sit
             on sitFund.sitid = sit.sitid
-	   ) SITData 
+	   )  SITData 
 	   on FundData.ISINCode = SITData.isin
 
 
