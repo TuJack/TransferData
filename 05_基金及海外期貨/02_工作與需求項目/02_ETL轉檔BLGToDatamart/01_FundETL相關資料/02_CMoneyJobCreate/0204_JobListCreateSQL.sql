@@ -1,3 +1,6 @@
+Use CMoney
+Go
+
 insert into CMoney.dbo.Job_List (
    jobID, jobName, cmTable, nsTable, criteriaID, 
    criteriaID2, criteriaType, flag_use, flag_spec, flag_nonbatch 
