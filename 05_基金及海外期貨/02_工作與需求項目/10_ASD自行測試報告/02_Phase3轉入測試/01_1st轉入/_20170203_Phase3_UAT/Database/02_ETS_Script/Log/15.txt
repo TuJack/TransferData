@@ -1,0 +1,7 @@
+已將資料庫內容變更為 'ETS_P'。
+訊息 208, 層級 16, 狀態 1, 伺服器 PPMWAMS1, 程序 v_fas_fn_dfd, 行 8
+無效的物件名稱 'isdbTGL.dbo.fn_dfd'。
+訊息 15135, 層級 16, 狀態 8, 伺服器 PPMWAMS1, 程序 sp_addextendedproperty, 行 37
+無效的物件。'dbo.v_fas_fn_dfd' 不允許使用擴充屬性，或是物件不存在。
+訊息 15135, 層級 16, 狀態 8, 伺服器 PPMWAMS1, 程序 sp_addextendedproperty, 行 37
+無效的物件。'dbo.v_fas_fn_dfd' 不允許使用擴充屬性，或是物件不存在。

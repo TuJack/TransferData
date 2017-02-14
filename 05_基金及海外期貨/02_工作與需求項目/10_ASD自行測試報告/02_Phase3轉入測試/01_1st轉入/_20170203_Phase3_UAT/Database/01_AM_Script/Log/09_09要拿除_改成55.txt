@@ -1,0 +1,3 @@
+已將資料庫內容變更為 'isdbTGL'。
+訊息 208, 層級 16, 狀態 1, 伺服器 PPMWAMS1, 程序 Vgl_cash_trade, 行 14
+無效的物件名稱 'dbo.Vgl_cash_trade_FOF'。

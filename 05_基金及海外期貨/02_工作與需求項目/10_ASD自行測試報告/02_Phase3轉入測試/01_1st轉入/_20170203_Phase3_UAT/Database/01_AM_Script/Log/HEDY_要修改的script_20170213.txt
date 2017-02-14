@@ -1,0 +1,6 @@
+01_AM_Script要修改的script如下：
+
+1、要拿除：08、09、43、44、45、50、53
+2、新增：
+	54_CREATEVgl_cash_trade_FOF
+	55_ALTERVgl_cash_trade

@@ -1,0 +1,5 @@
+已將資料庫內容變更為 'isdbTGL'。
+訊息 2714, 層級 16, 狀態 6, 伺服器 PPMWAMS1, 行 2
+資料庫中已經有一個名為 'fn_fd_data' 的物件。
+訊息 15233, 層級 16, 狀態 1, 伺服器 PPMWAMS1, 程序 sp_addextendedproperty, 行 37
+無法加入屬性。'dbo.fn_fd_data.Fund_Industry_Focus' 的屬性 'MS_Description' 已經存在。

@@ -1,0 +1,5 @@
+已將資料庫內容變更為 'ETS_P'。
+訊息 15135, 層級 16, 狀態 9, 伺服器 PPMWAMS1, 程序 sp_dropextendedproperty, 行 28
+無效的物件。'dbo.FofFundData' 不允許使用擴充屬性，或是物件不存在。
+訊息 15135, 層級 16, 狀態 9, 伺服器 PPMWAMS1, 程序 sp_dropextendedproperty, 行 28
+無效的物件。'dbo.FofFundData' 不允許使用擴充屬性，或是物件不存在。

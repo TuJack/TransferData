@@ -1,0 +1,7 @@
+已將資料庫內容變更為 'isdbTGL'。
+訊息 208, 層級 16, 狀態 1, 伺服器 PPMWAMS1, 程序 Vgl_cash_trade_FOF, 行 7
+無效的物件名稱 'dbo.fn_fd_buy'。
+訊息 15135, 層級 16, 狀態 8, 伺服器 PPMWAMS1, 程序 sp_addextendedproperty, 行 37
+無效的物件。'dbo.Vgl_cash_trade_FOF' 不允許使用擴充屬性，或是物件不存在。
+訊息 15135, 層級 16, 狀態 8, 伺服器 PPMWAMS1, 程序 sp_addextendedproperty, 行 37
+無效的物件。'dbo.Vgl_cash_trade_FOF' 不允許使用擴充屬性，或是物件不存在。
