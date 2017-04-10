@@ -1,0 +1,4 @@
+Bitbucket address : https://Jack_tu@bitbucket.org/Jack_tu/assetsmanagementsystem.git
+                    https://TuJack@bitbucket.org/TuJack/assetsmanagementsystem.git (ID/Password:jack.tu.uk@gmail.com/1234jack)
+Github address : https://github.com/TuJack/AssetsManagementSystem.git
+GitLab address : https://JackTu@gitlab.com/JackTu/AssetsManagementSystem.git (ID/Password:jack.tu.tw@gmail.com/1234jack)
