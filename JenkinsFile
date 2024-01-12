@@ -1,0 +1,125 @@
+//def is_fail = true
+def gitUrl = Release_Url
+def bitbucket_webpage_repo = gitUrl.replace("https://", "")
+def scm_tag = Branch_Tag
+def jobTemplate = Job_Template
+def credentialsId = 'aa30e35b-ac42-40a7-a076-486e4b85bd7a'
+def branch_ven = Branch_Ven
+
+pipeline {
+    agent {
+        label 'Jenkins-Slave-Windows-Net'
+    }
+    parameters {
+        gitParameter name: 'Branch_Tag',
+                     type: 'PT_BRANCH_TAG',
+                     selectedValue: 'DEFAULT',
+                     defaultValue: 'master',
+                     sortMode: 'ASCENDING_SMART',
+                     useRepository: gitUrl,
+                     quickFilterEnabled:true,
+                     description: 'Select your branch or tag.'
+    }
+    //pipleline send email on Success or failure 
+    post{
+        failure{
+            // mail to: "genio.chiu@prudential.com",
+            emailext to: "chaoyu.tsai@taishinlife.com.tw",
+            subject: "${currentBuild.fullDisplayName} is failed Pipeline",
+            body: "${currentBuild.fullDisplayName} job is wrong with ${env.BUILD_URL} console"
+        }
+        success{
+            // mail to: "genio.chiu@prudential.com",
+            emailext to: "chaoyu.tsai@taishinlife.com.tw",
+            subject: "${currentBuild.fullDisplayName} is success Pipeline",
+            body: "It's ok with ${env.BUILD_URL} console"
+        }
+    }
+    stages {
+        stage('git_CheckoutCode') {
+            steps {
+                checkout([$class: 'GitSCM',
+                          branches: [[name: "${params.Branch_Tag}"]],
+                          doGenerateSubmoduleConfigurations: false,
+                          extensions: [],
+                          gitTool: 'Default',
+                          submoduleCfg: [],
+                          userRemoteConfigs: [[url: gitUrl, credentialsId: "${credentialsId}"]]
+                        ])
+            }
+        }
+        stage('ansible trigger') {
+            steps {
+                script {
+                    results = ansibleTower async: true,
+                    extraVars: '''---
+                                scm_tag: ''' + scm_tag + '''
+                                folder_name: ''' + folder_name + '''
+                                bitbucket_webpage_repo: ''' + bitbucket_webpage_repo + '''
+                                ''',
+                    jobTemplate: "${jobTemplate}",
+                    jobType: 'run',
+                    removeColor: true,
+                    throwExceptionWhenFail: true,
+                    towerCredentialsId: "${credentialsId}",
+                    towerLogLevel: 'true',
+                    towerServer: 'ansible',
+                    verbose: false
+                }
+                println('Job id: ' + results.JOB_ID)
+                println('Job result: ' + results.JOB_RESULT)
+            }
+        }
+        stage('Wait for Tower job') {
+            steps {
+                script {
+                    def job = results.get('job', null)
+                    if (job == null) {
+                        error('The tower job was defined as null !')
+                    }
+                  // Temporarily set timeout 10 minutes
+
+                    waitUntil(initialRecurrencePeriod: 3000, quiet: true) {
+                        return job.isComplete()
+                    }
+                }
+            }
+        }
+        stage('Process tower results') {
+            steps {
+                script {
+                    def job = results.get('job', null)
+                    if (job == null) {
+                        error('Tower job was null')
+                    }
+
+                    //First lets get and display the logs
+                    def Vector<String> logs = job.getLogs()
+                    for (String line: logs) {
+                        println(line)
+                    }
+
+                    //Now lets get our exports, these depend on us calling getLogs
+                    def HashMap<String, String> exports = job.getExports()
+                    def returned_value = exports.get('value', 'Not Defined')
+                    if (returned_value != 'T-REX') {
+                        println('Tower job did not return a T-Rex: ' + returned_value)
+                  } else {
+                        println('Exports were as expected')
+                    }
+
+                    //Finally, lets see if the job was successful
+                    boolean successful = job.wasSuccessful()
+                    if (successful) {
+                        println('Job ran successfully')
+                  } else {
+                        error('The job did not end well')
+                    }
+
+                    //Release the Tower token (see note below)
+                    job.releaseToken()
+                }
+            }
+        }
+    }
+}
